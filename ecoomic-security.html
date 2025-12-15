@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valeria Usacheva - Портфоліо</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            color: #667eea;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        nav button:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        nav button.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        h2 {
+            color: #764ba2;
+            margin: 2rem 0 1rem 0;
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            color: #667eea;
+            margin: 1.5rem 0 0.8rem 0;
+            font-size: 1.3rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .info-item {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .info-item strong {
+            color: #764ba2;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 1rem 0;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .threat-item, .recommendation-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            border-left: 5px solid #e74c3c;
+            transition: transform 0.2s ease;
+        }
+
+        .recommendation-item {
+            border-left-color: #27ae60;
+        }
+
+        .threat-item:hover, .recommendation-item:hover {
+            transform: translateX(5px);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            display: block;
+        }
+
+        .data-table table {
+            width: 100%;
+            min-width: 600px;
+        }
+
+        .data-table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .data-table td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .data-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .chart-info {
+            background: #e8eaf6;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><button onclick="showPage('about')" class="active">Про мене</button></li>
+                <li><button onclick="showPage('resume')">Резюме</button></li>
+                <li><button onclick="showPage('analysis')">Аналітичний звіт</button></li>
+            </ul>
+        </nav>
+
+        <!-- Сторінка 1: Про мене -->
+        <div id="about" class="page active">
+            <div class="content-card">
+                <div class="profile-section">
+                    <div class="profile-image">VU</div>
+                    <div>
+                        <h1>Valeria Usacheva</h1>
+                        <p style="font-size: 1.2rem; color: #666;">Студентка КНЕУ</p>
+                    </div>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <strong>Ім'я та Прізвище:</strong>
+                        Валерія Усачова (Valeria Usacheva)
+                    </div>
+                    <div class="info-item">
+                        <strong>Факультет:</strong>
+                        Економіки та управління
+                    </div>
+                    <div class="info-item">
+                        <strong>Група:</strong>
+                        Інформація уточнюється
+                    </div>
+                    <div class="info-item">
+                        <strong>Дисципліна:</strong>
+                        Інформаційні технології в забезпеченні економічної безпеки держави
+                    </div>
+                    <div class="info-item">
+                        <strong>Email:</strong>
+                        valeri.cheva12@gmail.com
+                    </div>
+                    <div class="info-item">
+                        <strong>Телефон:</strong>
+                        (+380) 0505611028
+                    </div>
+                </div>
+
+                <h2>Про мене</h2>
+                <p style="margin: 1rem 0; line-height: 1.8;">
+                    Студентка КНЕУ, яка активно вивчає інформаційні технології в контексті забезпечення економічної безпеки держави. 
+                    Володію англійською мовою на рівні B1, маю досвід волонтерської роботи в благодійному фонді "Нескорений Харків". 
+                    Захоплююся фітнесом, співом та в'язанням. Активно беру участь у громадських заходах та культурних проектах.
+                </p>
+            </div>
+        </div>
+
+        <!-- Сторінка 2: Резюме -->
+        <div id="resume" class="page">
+            <div class="content-card">
+                <h1>Резюме / CV</h1>
+
+                <h2>Особиста інформація</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <strong>Дата народження:</strong>
+                        14 серпня 2008
+                    </div>
+                    <div class="info-item">
+                        <strong>Місце народження:</strong>
+                        Харків, Україна
+                    </div>
+                    <div class="info-item">
+                        <strong>Громадянство:</strong>
+                        Українка
+                    </div>
+                    <div class="info-item">
+                        <strong>Адреса:</strong>
+                        вул. Мілютенко, 6, Київ, 02166
+                    </div>
+                </div>
+
+                <h2>Досвід роботи</h2>
+                <div class="info-item" style="margin: 1rem 0;">
+                    <h3>Волонтер</h3>
+                    <p><strong>Благодійний фонд "Нескорений Харків"</strong></p>
+                    <p><em>12 жовтня 2024 - 5 червня 2025</em></p>
+                    <p style="margin-top: 0.5rem;">Допомога людям, які втратили домівки через воєнні дії</p>
+                </div>
+
+                <h2>Освіта</h2>
+                <div class="info-item" style="margin: 1rem 0;">
+                    <h3>Середня освіта</h3>
+                    <p><strong>Харківська спеціалізована школа I-III ступенів №93</strong></p>
+                    <p><em>1 вересня 2014 - 30 травня 2025</em></p>
+                    <p>Харків, Україна</p>
+                </div>
+
+                <h2>Мовні навички</h2>
+                <div style="margin: 1.5rem 0;">
+                    <div class="info-item">
+                        <strong>Рідна мова:</strong> Російська
+                    </div>
+                    <div class="info-item" style="margin-top: 1rem;">
+                        <strong>Англійська мова:</strong>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.5rem; margin-top: 0.5rem;">
+                            <div>Розуміння: B1</div>
+                            <div>Читання: B1</div>
+                            <div>Говоріння: B1</div>
+                            <div>Письмо: B1</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Навички</h2>
+                <div class="skills-list">
+                    <span class="skill-tag">Microsoft Office</span>
+                    <span class="skill-tag">Microsoft Word</span>
+                    <span class="skill-tag">Microsoft PowerPoint</span>
+                    <span class="skill-tag">Social Media</span>
+                </div>
+
+                <h2>Хобі та інтереси</h2>
+                <div class="skills-list">
+                    <span class="skill-tag">Фітнес</span>
+                    <span class="skill-tag">Спів</span>
+                    <span class="skill-tag">В'язання</span>
+                </div>
+
+                <h2>Громадська діяльність</h2>
+                <div class="info-item" style="margin: 1rem 0;">
+                    <h3>Співак</h3>
+                    <p><strong>Будинок культури, Харків</strong></p>
+                    <p><em>25 грудня 2019 - 22 червня 2025</em></p>
+                </div>
+
+                <h2>Творча діяльність</h2>
+                <div class="info-item" style="margin: 1rem 0;">
+                    <h3>Організація концерту</h3>
+                    <p><em>12 червня 2025 - 22 червня 2025</em></p>
+                    <p style="margin-top: 0.5rem;">Створення благодійного концерту для дітей та їхніх батьків, участь у співі та ведення заходу</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Сторінка 3: Аналітичний звіт -->
+        <div id="analysis" class="page">
+            <div class="content-card">
+                <h1>Аналітичний звіт: Об'єднане Королівство Великої Британії та Північної Ірландії</h1>
+                
+                <h2>Аналіз показника очікуваної тривалості життя</h2>
+                
+                <div class="chart-info">
+                    <h3>Основні дані (2014-2023)</h3>
+                    <p><strong>Середнє значення:</strong> 78,12 років</p>
+                    <p><strong>Мінімум:</strong> 76,33 років (2021)</p>
+                    <p><strong>Максимум:</strong> 78,84 років (2014)</p>
+                    <p><strong>Тренд:</strong> Низхідний (y = -0,1726x + 426,44, R² = 0,3531)</p>
+                    <p><strong>Висновок:</strong> Рівень економічної безпеки знаходився на оптимальному рівні, оскільки середнє значення належить до інтервалу оптимуму</p>
+                </div>
+
+                <div class="data-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Рік</th>
+                                <th>Очікувана тривалість життя (років)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>2014</td><td>78,84</td></tr>
+                            <tr><td>2015</td><td>78,69</td></tr>
+                            <tr><td>2016</td><td>78,54</td></tr>
+                            <tr><td>2017</td><td>78,54</td></tr>
+                            <tr><td>2018</td><td>78,64</td></tr>
+                            <tr><td>2019</td><td>78,79</td></tr>
+                            <tr><td>2020</td><td>76,98</td></tr>
+                            <tr><td>2021</td><td>76,33</td></tr>
+                            <tr><td>2022</td><td>77,43</td></tr>
+                            <tr><td>2023</td><td>78,39</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Комплексний аналіз 9 показників</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                    <div class="info-item">
+                        <strong>1. Тривалість життя</strong>
+                        <p>Середнє: 78,12 років<br>Тренд: низхідний<br>Рівень: оптимальний</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>2. Дитяча смертність</strong>
+                        <p>Середнє: 3,87 на 1000<br>Тренд: висхідний<br>Рівень: оптимальний</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>3. Відновлювальна енергія</strong>
+                        <p>Середнє: 8,76%<br>Тренд: висхідний<br>Рівень: оптимальний</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>4. Покриття експортом</strong>
+                        <p>Середнє: 0,97<br>Тренд: висхідний<br>Рівень: недостатній</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>5. Наукові роботи у ВВП</strong>
+                        <p>Середнє: 2,36%<br>Тренд: висхідний<br>Рівень: задовільний</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>6. Платіжний баланс</strong>
+                        <p>Середнє: -3,24% ВВП<br>Тренд: висхідний<br>Рівень: недостатній</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>7. Виробництво зерна</strong>
+                        <p>Середнє: 0,34 т/особу<br>Тренд: низхідний<br>Рівень: небезпечний</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>8. Нерівність доходів</strong>
+                        <p>Децильний коефіцієнт: 8,22<br>Тренд: висхідний<br>Рівень: небезпечний</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>9. Державний борг</strong>
+                        <p>Середнє: 159,82% ВВП<br>Тренд: низхідний<br>Рівень: небезпечний</p>
+                    </div>
+                </div>
+
+                <h2>5 основних загроз економічній безпеці</h2>
+
+                <div class="threat-item">
+                    <h3>1. Критичний рівень державного боргу (159,82% ВВП)</h3>
+                    <p>Відношення державного боргу до ВВП перебуває на абсолютно небезпечному рівні, що значно перевищує безпечний поріг у 60%. Пік був досягнутий у 2020 році (196,64%), і хоча спостерігається низхідний тренд, боргове навантаження залишається критичним. Це обмежує маневреність фіскальної політики, збільшує витрати на обслуговування боргу та створює ризики для майбутніх поколінь.</p>
+                </div>
+
+                <div class="threat-item">
+                    <h3>2. Хронічний дефіцит платіжного балансу (-3,24% ВВП)</h3>
+                    <p>Постійне від'ємне сальдо поточного рахунку платіжного балансу свідчить про структурні проблеми економіки. Країна споживає більше, ніж виробляє, що призводить до залежності від іноземного капіталу. Найгірший показник був у 2015 році (-4,95%), і хоча тренд позитивний, дефіцит залишається на недостатньому рівні безпеки.</p>
+                </div>
+
+                <div class="threat-item">
+                    <h3>3. Критична соціальна нерівність (децильний коефіцієнт 8,22)</h3>
+                    <p>Різниця у доходах між найбагатшими 10% і найбіднішими 10% населення перебуває на абсолютно небезпечному рівні (при нормі до 7). У 2020-2021 роках показник досягав 8,75-8,86, що створює соціальну напругу, знижує купівельну спроможність значної частини населення та загрожує соціальній стабільності. Висхідний тренд вказує на погіршення ситуації.</p>
+                </div>
+
+                <div class="threat-item">
+                    <h3>4. Продовольча небезпека через низьке виробництво зерна (0,34 т/особу)</h3>
+                    <p>Виробництво зерна на одну особу знаходиться на абсолютно небезпечному рівні (при нормі 0,6 т і вище). Низхідний тренд (від 0,38 т у 2015 до 0,32 т у 2024) свідчить про зростаючу залежність від імпорту продовольства та вразливість до глобальних продовольчих криз, що загрожує продовольчій безпеці країни.</p>
+                </div>
+
+                <div class="threat-item">
+                    <h3>5. Недостатнє покриття імпорту експортом (0,97)</h3>
+                    <p>Коефіцієнт покриття експортом імпорту нижче критичного значення 1,0, що означає переважання імпорту над експортом. Хоча спостерігається висхідний тренд від мінімуму 0,94 (2015-2016), показник досі на недостатньому рівні. Це створює торговельний дисбаланс, зменшує валютні резерви та свідчить про низьку конкурентоспроможність національної економіки.</p>
+                </div>
+
+                <h2>5 рекомендацій для підвищення економічної безпеки</h2>
+
+                <div class="recommendation-item">
+                    <h3>1. Комплексна програма скорочення державного боргу</h3>
+                    <p>Розробити середньострокову стратегію зниження боргу до 100% ВВП протягом 10 років через: оптимізацію бюджетних видатків (скорочення неефективних програм), розширення податкової бази (боротьба з ухиленням від податків, оподаткування цифрової економіки), приватизацію неефективних державних активів та стимулювання економічного зростання для збільшення податкових надходжень. Впровадити жорсткі фіскальні правила з автоматичними механізмами балансування бюджету.</p>
+                </div>
+
+                <div class="recommendation-item">
+                    <h3>2. Підвищення експортної конкурентоспроможності</h3>
+                    <p>Інвестувати в розвиток високотехнологічних експортних галузей (біотехнології, штучний інтелект, зелені технології, фінтех) для досягнення коефіцієнта покриття понад 1,0. Створити експортні кредитні агентства з державною підтримкою, запровадити податкові стимули для експортерів, розвивати вільні економічні зони та активно укладати торговельні угоди з новими ринками після Brexit. Особлива увага - цифровим послугам і креативним індустріям, де Британія має конкурентні переваги.</p>
+                </div>
+
+                <div class="recommendation-item">
+                    <h3>3. Реформа податкової системи для зменшення нерівності</h3>
+                    <p>Впровадити прогресивнішу систему оподаткування: збільшити податки на капітал та спадщину, ввести податок на багатство понад £10 млн, підвищити мінімальну заробітну плату до рівня прожиткового мінімуму, розширити програми Universal Credit та створити умовний базовий дохід для найвразливіших груп. Інвестувати в соціальне житло та доступну освіту для підвищення соціальної мобільності. Децільний коефіцієнт знизити до 7 протягом 5 років.</p>
+                </div>
+
+                <div class="recommendation-item">
+                    <h3>4. Національна стратегія продовольчої безпеки</h3>
+                    <p>Збільшити виробництво зерна до безпечного рівня 0,6 т/особу через: субсидування вітчизняних сільгоспвиробників, впровадження сучасних агротехнологій (точне землеробство, вертикальні ферми), стимулювання органічного виробництва та диверсифікацію постачальників імпортного зерна. Створити стратегічні запаси продовольства на 6 місяців споживання. Інвестувати у дослідження стійких до зміни клімату сортів та технологій.</p>
+                </div>
+
+                <div class="recommendation-item">
+                    <h3>5. Збалансування платіжного балансу через структурні реформи</h3>
+                    <p>Досягти профіциту поточного рахунку через: стимулювання внутрішніх інвестицій замість споживання (податкові пільги для R&D та капітальних вкладень), збільшення експорту послуг (фінансові, освітні, креативні), залучення прямих іноземних інвестицій у виробничі сектори, розвиток туризму та зменшення залежності від імпорту енергоносіїв через нарощування відновлювальної енергетики. Встановити ціль досягнення профіциту 1-2% ВВП протягом 7 років.</p>
+                </div>
+
+                <div class="chart-info" style="margin-top: 2rem;">
+                    <h3>Загальний висновок</h3>
+                    <p><strong>Комплексна оцінка економічної безпеки Великої Британії:</strong></p>
+                    <p style="margin-top: 1rem;">Аналіз 9 ключових показників виявив <strong>критичний стан</strong> економічної безпеки країни. З 9 показників:</p>
+                    <ul style="margin: 1rem 0 1rem 2rem; line-height: 1.8;">
+                        <li><strong>3 показники на оптимальному рівні</strong> (тривалість життя, дитяча смертність, відновлювальна енергія)</li>
+                        <li><strong>1 показник на задовільному рівні</strong> (наукові роботи у ВВП)</li>
+                        <li><strong>2 показники на недостатньому рівні</strong> (покриття експортом, платіжний баланс)</li>
+                        <li><strong>3 показники на абсолютно небезпечному рівні</strong> (державний борг, нерівність доходів, виробництво зерна)</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>Основні системні проблеми:</strong> надмірний державний борг (159,82% ВВП), критична соціальна нерівність, структурний дефіцит платіжного балансу та продовольча вразливість. Позитивними факторами є стабільна тривалість життя, низька дитяча смертність та зростання частки відновлювальної енергетики.</p>
+                    <p style="margin-top: 1rem;"><strong>Пріоритетні напрямки:</strong> Першочергово необхідно реформувати фіскальну політику для зменшення боргового навантаження, підвищити експортну конкурентоспроможність для балансування зовнішньої торгівлі, провести соціальну реформу для зменшення нерівності та забезпечити продовольчу безпеку через розвиток сільського господарства. Без комплексних структурних реформ країна ризикує втратити економічну стійкість та соціальну стабільність.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            const buttons = document.querySelectorAll('nav button');
+            
+            pages.forEach(page => page.classList.remove('active'));
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(pageId).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
